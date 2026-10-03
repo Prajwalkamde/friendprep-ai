@@ -1,3 +1,5 @@
+Live Demo - https://friendprep-ai.onrender.com/
+
 # FriendPrep AI
 
 ## Problem
