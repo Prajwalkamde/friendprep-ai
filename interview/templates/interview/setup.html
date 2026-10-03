@@ -1,0 +1,51 @@
+{% extends 'interview/base.html' %}
+
+{% block title %}Set up your interview{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <h1 class="h3 fw-bold mb-3">Create your practice interview</h1>
+                <p class="text-muted mb-4">Share your profile so the AI can generate a realistic, personalized interview.</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            {{ form.friend_name.label_tag }}
+                            {{ form.friend_name }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.target_role.label_tag }}
+                            {{ form.target_role }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.experience_level.label_tag }}
+                            {{ form.experience_level }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.skills.label_tag }}
+                            {{ form.skills }}
+                        </div>
+                        <div class="col-12">
+                            {{ form.resume.label_tag }}
+                            {{ form.resume }}
+                        </div>
+                        <div class="col-12">
+                            {{ form.job_description.label_tag }}
+                            {{ form.job_description }}
+                        </div>
+                    </div>
+
+                    <div class="mt-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <a href="{% url 'interview:home' %}" class="btn btn-outline-secondary">Back</a>
+                        <button type="submit" class="btn btn-primary btn-lg">Generate Interview</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

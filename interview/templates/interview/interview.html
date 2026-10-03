@@ -1,0 +1,55 @@
+{% extends 'interview/base.html' %}
+
+{% block title %}Interview session{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                    <div>
+                        <p class="eyebrow mb-1">Interview progress</p>
+                        <h1 class="h3 mb-0">{{ session.friend_name }}'s practice session</h1>
+                    </div>
+                    <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2">{{ progress }}% complete</span>
+                </div>
+                <div class="progress" role="progressbar" aria-label="Interview progress" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: {{ progress }}%"></div>
+                </div>
+            </div>
+        </div>
+
+        {% if question %}
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex justify-content-between mb-3 flex-wrap gap-3">
+                        <span class="badge bg-primary-subtle text-primary">Question {{ question.question_number }}</span>
+                        <span class="badge bg-secondary-subtle text-secondary">{{ question.difficulty|title }} • {{ question.question_type|title }}</span>
+                    </div>
+
+                    <h2 class="h4 mb-4">{{ question.question }}</h2>
+
+                    <form method="post" action="{% url 'interview:submit_answer' session.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="question_id" value="{{ question.id }}">
+                        <textarea name="answer" class="form-control answer-box" rows="8" placeholder="Share your answer here..." required></textarea>
+                        <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-2">
+                            <small class="text-muted">Think before you answer. Focus on clarity, trade-offs, and examples.</small>
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Answer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center py-5">
+                    <h2 class="h4">No active question</h2>
+                    <p class="text-muted">Your interview is complete. Review your report.</p>
+                    <a class="btn btn-primary" href="{% url 'interview:result' session.id %}">View Results</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

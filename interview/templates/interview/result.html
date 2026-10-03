@@ -1,0 +1,75 @@
+{% extends 'interview/base.html' %}
+
+{% block title %}Interview report{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4 text-center">
+                <p class="eyebrow mb-2">Overall score</p>
+                <div class="score-ring mx-auto">
+                    <span>{{ report.overall_score|floatformat:1 }}</span>
+                </div>
+                <h1 class="h3 mt-3 mb-0">{{ session.friend_name }}</h1>
+                <p class="text-muted mb-0">{{ session.target_role }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <h2 class="h4 mb-3">Final summary</h2>
+                <p class="text-muted mb-0">{{ report.summary }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-1">
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <h3 class="h5">Strengths</h3>
+                <p class="mb-0 text-muted">{{ report.strengths }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <h3 class="h5">Weaknesses</h3>
+                <p class="mb-0 text-muted">{{ report.weaknesses }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-1">
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <h3 class="h5">Recommended topics</h3>
+                <p class="mb-0 text-muted">{{ report.recommended_topics }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <h3 class="h5">Question-by-question</h3>
+                <ul class="mb-0 text-muted ps-3">
+                    {% for question in questions %}
+                        <li><strong>{{ question.question_number }}</strong> — {{ question.score|default:'N/A' }} / 10</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4 text-center">
+    <a href="{% url 'interview:setup' %}" class="btn btn-primary btn-lg">Practice Again</a>
+</div>
+{% endblock %}

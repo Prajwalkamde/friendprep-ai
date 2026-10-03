@@ -1,0 +1,69 @@
+{% extends 'interview/base.html' %}
+
+{% block title %}FriendPrep AI{% endblock %}
+
+{% block content %}
+<section class="hero-card card border-0 shadow-lg">
+    <div class="card-body p-5">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <p class="eyebrow">AI interview practice for real-world preparation</p>
+                <h1 class="display-5 fw-bold mb-3">A personalized AI interview partner built for a friend.</h1>
+                <p class="lead text-muted mb-4">
+                    FriendPrep AI reads your background, targets the role you want, and walks you through a realistic interview with coaching feedback and a final prep report.
+                </p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a class="btn btn-primary btn-lg" href="{% url 'interview:setup' %}">Start Interview</a>
+                    <a class="btn btn-outline-secondary btn-lg" href="#features">Explore Features</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="glass-panel p-4">
+                    <div class="mini-stat mb-3">
+                        <span class="mini-label">Interview flow</span>
+                        <strong>Personalized</strong>
+                    </div>
+                    <div class="mini-stat mb-3">
+                        <span class="mini-label">Model layer</span>
+                        <strong>Open-weight AI</strong>
+                    </div>
+                    <div class="mini-stat">
+                        <span class="mini-label">Final output</span>
+                        <strong>Actionable report</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="features" class="row g-4 mt-4">
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+                <div class="feature-icon">🎯</div>
+                <h3 class="h5 mt-3">Role-aware questions</h3>
+                <p class="text-muted mb-0">Tailored to your target role, resume, and skills.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+                <div class="feature-icon">🧠</div>
+                <h3 class="h5 mt-3">Instant evaluation</h3>
+                <p class="text-muted mb-0">Feedback, score, and follow-up prompts based on your answer quality.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+                <div class="feature-icon">📊</div>
+                <h3 class="h5 mt-3">Preparedness report</h3>
+                <p class="text-muted mb-0">Understand strengths, weak spots, and what to practice next.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
